@@ -5,11 +5,11 @@ slug: setecna
 description: Setecna REG system web integration
 url: "https://github.com/Ingordigia/homeassistant-addon-setecna"
 arch:
-  # - armhf
+  - armhf
   - armv7
-  # - aarch64
-  # - amd64
-  # - i386
+  - aarch64
+  - amd64
+  - i386
 init: false
 map:
   - share:rw
