@@ -6,7 +6,8 @@ ARG BUILD_ARCH
 WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
-COPY setecna/ ./
+COPY . .
+RUN ls -la
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=${BUILD_ARCH} go build cmd/setecna.go -o /app
 ENTRYPOINT ["/docker-gs-ping"]
 
