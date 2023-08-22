@@ -19,5 +19,5 @@ RUN \
     "https://github.com/home-assistant/tempio/releases/download/${TEMPIO_VERSION}/tempio_${BUILD_ARCH}"
 COPY rootfs /
 COPY --from=build-stage /app/app /usr/bin/app
-RUN chmod a+x /etc/services.d/setecna/run.sh
+RUN chmod a+x /etc/services.d/setecna/run
 CMD [ "/run.sh" ]
