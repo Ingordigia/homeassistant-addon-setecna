@@ -8,7 +8,7 @@ COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
 RUN ls -la
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=386 go build cmd/main.go -o app
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=386 go build -o app cmd/main.go
 ENTRYPOINT ["/docker-gs-ping"]
 
 # Deploy the application binary into a lean image
