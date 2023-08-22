@@ -1,0 +1,22 @@
+# https://developers.home-assistant.io/docs/add-ons/configuration#add-on-dockerfile
+# Build the application from source
+ARG BUILD_FROM
+FROM golang:1.19 AS build-stage
+ARG BUILD_ARCH
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY setecna/ ./
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=${BUILD_ARCH} go build cmd/setecna.go -o /app
+ENTRYPOINT ["/docker-gs-ping"]
+
+# Deploy the application binary into a lean image
+FROM $BUILD_FROM
+ARG TEMPIO_VERSION BUILD_ARCH
+RUN \
+    curl -sSLf -o /usr/bin/tempio \
+    "https://github.com/home-assistant/tempio/releases/download/${TEMPIO_VERSION}/tempio_${BUILD_ARCH}"
+COPY rootfs /
+COPY --from=build-stage /app /usr/bin/app
+RUN chmod a+x /etc/services.d/setecna/run.sh
+CMD [ "/run.sh" ]

@@ -14,7 +14,11 @@ init: false
 map:
   - share:rw
 options:
-  message: "Hello world..."
+  systemID: null
+  username: null
+  password: null
 schema:
-  message: "str?"
-image: "ghcr.io/Ingordigia/{arch}-addon-example"
+  systemID: "str"
+  username: "str"
+  password: "password"
+image: "ghcr.io/ingordigia/{arch}-setecna-addon"

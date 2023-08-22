@@ -1,0 +1,4 @@
+configuration:
+  systemID:
+    name: SystemID
+    description: L'ID del sistema REG a cui vuoi connetterti.
