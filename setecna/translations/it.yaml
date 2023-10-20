@@ -1,4 +1,16 @@
 configuration:
   systemID:
-    name: SystemID
+    name: ID Sistema
     description: L'ID del sistema REG a cui vuoi connetterti.
+  username:
+    name: Username
+    description: Il nome utente utilizzato per connettersi al portale di telegestione.
+  password:
+    name: Password
+    description: La password dell'utente utilizzato per connettersi al portale di telegestione.
+  readonly:
+    name: Modalità sola lettura
+    description: "Verranno create in Home Assistant solo le entità diagnostiche, impedendo quindi la modifica delle configurazioni del tuo sistema REG"
+  adv_int:
+    name: Integrazione avanzata
+    description: "[Con Modalità sola lettura disabilitata] Dove possibile l'addon trasformerà i parametri del sistema REG in entità native di Home Assistant (Es: Zone REG <-> Climate HA)."

@@ -1,6 +1,6 @@
 # https://developers.home-assistant.io/docs/add-ons/configuration#add-on-config
 name: Setecna REG system
-version: "0.1.0"
+version: "1.0.0"
 slug: setecna
 description: Setecna REG system web integration
 url: "https://github.com/Ingordigia/homeassistant-addon-setecna"
@@ -17,8 +17,14 @@ options:
   systemID: null
   username: null
   password: null
+  readonly: false
+  adv_int: false
 schema:
   systemID: "str"
   username: "str"
   password: "password"
+  readonly: bool
+  adv_int: bool
+services:
+  - mqtt:need
 image: "ghcr.io/ingordigia/{arch}-setecna-addon"

@@ -1,4 +1,16 @@
 configuration:
   systemID:
     name: SystemID
-    description: The ID of the REG system you are trying to connecto to.
+    description: "The ID of the REG system you are trying to connecto to."
+  username:
+    name: Username
+    description: "The name of the user used to connect to the web portal."
+  password:
+    name: Password
+    description: "The password of the user used to connect to the web portal."
+  readonly:
+    name: Readonly
+    description: "The addon will only create diagnostic entities in Home Assistant, thus preventing the modification of the configurations of your REG system"
+  adv_int:
+    name: Advanced integration
+    description: "[Only with readonly disabled] The addon will try to translate the parameters of the REG system into native Home Assistant entities (Ex: Zone REG <-> Climate HA)."

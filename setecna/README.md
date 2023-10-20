@@ -1,6 +1,6 @@
-# Home Assistant Add-on: Example add-on
+# Home Assistant Add-on: Setecna REG system
 
-_Example add-on to use as a blueprint for new add-ons._
+_Setecna add-on used to import Setecna REG system entities in HomeAssistant through MQTT_
 
 ![Supports aarch64 Architecture][aarch64-shield]
 ![Supports amd64 Architecture][amd64-shield]
