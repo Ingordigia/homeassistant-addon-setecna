@@ -14,6 +14,16 @@ This repository contains all files needed to build and install the setecna add-o
 ![Supports armv7 Architecture][armv7-shield]
 ![Supports i386 Architecture][i386-shield]
 
+# Features
+
+This plugin will create a new MQTT device with many diagnostic and/or configuration entities from your Setecna system.
+
+![Screenshot MQTT Device page](docs/mqtt_device_page.PNG)
+
+The plugin also features an "Advanced integration" mode that will create HomeAssistant's native entities where possible. (climate)
+
+![Screenshot MQTT Device page](docs/climate_entity.PNG)
+
 <!--
 
 Notes to developers after forking or using the github template feature:
