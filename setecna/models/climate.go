@@ -75,22 +75,22 @@ func (c *ClimateWithHumidity) Init(number int, systemID string, season helpers.S
 		c.TemperatureHighStateTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_ES"
 		c.TemperatureHighStateTemplate = "{{ value | int / 10 }}"
 		c.TemperatureHighCommandTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_ES/set"
-		c.TemperatureHighCommandTemplate = "{{ value | int * 10 }}"
+		c.TemperatureHighCommandTemplate = "{{ (value * 10) | int }}"
 		c.TemperatureLowStateTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_CS"
 		c.TemperatureLowStateTemplate = "{{ value | int / 10 }}"
 		c.TemperatureLowCommandTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_CS/set"
-		c.TemperatureLowCommandTemplate = "{{ value | int * 10 }}"
+		c.TemperatureLowCommandTemplate = "{{ (value * 10) | int }}"
 	} else {
 		c.ModeStateTemplate = "{% if value == \"1\" %}heat{% else %}off{% endif %}"
 		c.Modes = []string{"heat", "off"}
 		c.TemperatureLowStateTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_EW"
 		c.TemperatureLowStateTemplate = "{{ value | int / 10 }}"
 		c.TemperatureLowCommandTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_EW/set"
-		c.TemperatureLowCommandTemplate = "{{ value | int * 10 }}"
+		c.TemperatureLowCommandTemplate = "{{ (value * 10) | int }}"
 		c.TemperatureHighStateTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_CW"
 		c.TemperatureHighStateTemplate = "{{ value | int / 10 }}"
 		c.TemperatureHighCommandTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_CW/set"
-		c.TemperatureHighCommandTemplate = "{{ value | int * 10 }}"
+		c.TemperatureHighCommandTemplate = "{{ (value * 10) | int }}"
 	}
 	// c.ModeStateTopic = "homeassistant/sensor/" + systemID + "_GLOBAL_SEASON"
 	// c.ModeStateTemplate = "{% if value == \"1\" %}cool{% else %}off{% endif %}"
@@ -111,7 +111,7 @@ func (c *ClimateWithHumidity) Init(number int, systemID string, season helpers.S
 	c.TargetHumidityStateTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_RH"
 	c.TargetHumidityStateTemplate = "{{ value | int / 10 }}"
 	c.TargetHumidityCommandTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_RH/set"
-	c.TargetHumidityCommandTemplate = "{{ value | int * 10 }}"
+	c.TargetHumidityCommandTemplate = "{{ (value * 10) | int }}"
 	c.TempStep = 0.5
 }
 
@@ -171,22 +171,22 @@ func (c *ClimateWithoutHumidity) Init(number int, systemID string, season helper
 		c.TemperatureLowStateTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_CS"
 		c.TemperatureLowStateTemplate = "{{ value | int / 10 }}"
 		c.TemperatureLowCommandTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_CS/set"
-		c.TemperatureLowCommandTemplate = "{{ value | int * 10 }}"
+		c.TemperatureLowCommandTemplate = "{{ (value * 10) | int }}"
 		c.TemperatureHighStateTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_ES"
 		c.TemperatureHighStateTemplate = "{{ value | int / 10 }}"
 		c.TemperatureHighCommandTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_ES/set"
-		c.TemperatureHighCommandTemplate = "{{ value | int * 10 }}"
+		c.TemperatureHighCommandTemplate = "{{ (value * 10) | int }}"
 	} else {
 		c.ModeStateTemplate = "{% if value == \"1\" %}heat{% else %}off{% endif %}"
 		c.Modes = []string{"heat", "off"}
 		c.TemperatureHighStateTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_CW"
 		c.TemperatureHighStateTemplate = "{{ value | int / 10 }}"
 		c.TemperatureHighCommandTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_CW/set"
-		c.TemperatureHighCommandTemplate = "{{ value | int * 10 }}"
+		c.TemperatureHighCommandTemplate = "{{ (value * 10) | int }}"
 		c.TemperatureLowStateTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_EW"
 		c.TemperatureLowStateTemplate = "{{ value | int / 10 }}"
 		c.TemperatureLowCommandTopic = "homeassistant/number/" + systemID + "_Z" + fmt.Sprint(number) + "_SET_EW/set"
-		c.TemperatureLowCommandTemplate = "{{ value | int * 10 }}"
+		c.TemperatureLowCommandTemplate = "{{ (value * 10) | int }}"
 	}
 	// c.Modes = []string{"cool", "heat", "off"}
 	// // c.ModeStateTopic = "homeassistant/sensor/" + systemID + "_GLOBAL_SEASON"
