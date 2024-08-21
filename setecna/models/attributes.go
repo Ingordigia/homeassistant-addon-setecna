@@ -317,7 +317,7 @@ func (m ParamsMap) addDigitalAlarm(from map[string]string, static, read, write b
 
 func (m ParamsMap) addZones(from map[string]string, static, read, write bool) {
 	for i := 1; i <= 32; i++ {
-		if from["Z"+fmt.Sprint(i)+"_TEMP"] != "32769" {
+		if from["Z"+fmt.Sprint(i)+"_SENSOR_CHN"] != "0" {
 			if static {
 				m["Z"+fmt.Sprint(i)+"_OUTPUT"] = Attributes{
 					Name:          "Zone " + fmt.Sprint(i) + " state",
