@@ -30,6 +30,7 @@ func (m ParamsMap) AddEnabledParams(from map[string]string, isReadOnly bool) {
 	m.addSources(from, true, isReadOnly, !isReadOnly)
 	m.addDehumidifier(from, true, isReadOnly, !isReadOnly)
 	m.addEnergymeters(from, true, isReadOnly, !isReadOnly)
+	m.addCalendars(from, true, isReadOnly, !isReadOnly)
 }
 
 func (m ParamsMap) AddDisabledParams(from map[string]string, isReadOnly bool) {
@@ -43,6 +44,7 @@ func (m ParamsMap) AddDisabledParams(from map[string]string, isReadOnly bool) {
 	m.addSources(from, false, !isReadOnly, isReadOnly)
 	m.addDehumidifier(from, false, !isReadOnly, isReadOnly)
 	m.addEnergymeters(from, false, !isReadOnly, isReadOnly)
+	m.addCalendars(from, false, !isReadOnly, isReadOnly)
 }
 
 func (m ParamsMap) addLastUpdate(from map[string]string, static, read, write bool) {
@@ -707,5 +709,38 @@ func (m ParamsMap) addEnergymeters(from map[string]string, static, read, write b
 			}
 		}
 
+	}
+}
+
+func (m ParamsMap) addCalendars(from map[string]string, static, read, write bool) {
+	for i := 1; i <= 8; i++ {
+		if from["MT"+fmt.Sprint(i)+"_XREF"] != "0" {
+			if static {
+				m["MT"+fmt.Sprint(i)+"_MODE"] = Attributes{
+					Name:          "Calendar " + fmt.Sprint(i) + " mode",
+					EntityType:    "sensor",
+					DeviceClass:   "enum",
+					ValueTemplate: "{% if value == \"1\" %}off{% elif value == \"2\" %}economy{% elif value == \"3\" %}comfort{% else %}{{ value }}{% endif %}",
+				}
+			}
+			if read {
+				m["MT"+fmt.Sprint(i)+"_FORCING"] = Attributes{
+					Name:          "Calendar " + fmt.Sprint(i) + " preset",
+					EntityType:    "sensor",
+					DeviceClass:   "enum",
+					ValueTemplate: "{% if value == \"0\" %}automatic{% elif value == \"1\" %}forced off{% elif value == \"2\" %}forced economy{% elif value == \"3\" %}forced comfort{% else %}{{ value }}{% endif %}",
+				}
+			}
+			if write {
+				m["MT"+fmt.Sprint(i)+"_FORCING"] = Attributes{
+					Name:            "Calendar " + fmt.Sprint(i) + " preset",
+					Options:         []string{"automatic", "forced off", "forced economy", "forced comfort"},
+					EntityType:      "select",
+					ValueTemplate:   "{% if value == \"1\" %}forced off{% elif value == \"2\" %}forced economy{% elif value == \"3\" %}forced comfort{% else %}automatic{% endif %}",
+					CommandTemplate: "{% if value == \"forced off\" %}1{% elif value == \"forced economy\" %}2{% elif value == \"forced comfort\" %}3{% else %}0{% endif %}",
+				}
+
+			}
+		}
 	}
 }
